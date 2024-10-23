@@ -1,0 +1,99 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define max 5
+int q[max];
+int rear=-1;
+int front=-1;
+void enqueue(int);
+int dequeue();
+void display();
+void main()
+{
+    int option;
+    do{
+        printf("1.enqueue\n 2.dequeue\n 3.display\n");
+        printf("enter your option:\n");
+        scanf("%d",&option);
+        switch(option){
+            case 1:
+                int num;
+                printf("enter the number:\n");
+                scanf("%d",&num);
+                enqueue(num);
+                break;
+            case 2:
+                int a=dequeue();
+                if(a!=-1)
+                    {
+                    printf("deleted element is %d\n",a);
+                    }
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                exit(0);
+            default:
+                printf("incorrect option\n");
+
+            }
+    }while(option!=4);
+
+}
+void enqueue(int num)
+{
+    if(rear==max-1)
+    {
+        printf("queue is full\n");
+    }
+    else{
+        if(front==-1&&rear==-1)
+        {
+            front=0;
+            rear=0;
+
+        }
+        else{
+            rear++;
+        }
+        q[rear]=num;
+    }
+
+}
+int dequeue()
+{
+    if(front==-1&&rear==-1)
+    {
+        printf("queue is empty\n");
+        return -1;
+    }
+   
+    else{
+         int a=q[front];
+        if(front==rear)
+        {
+
+            front=-1;
+            rear=-1;
+        }
+        else{
+            front++;
+        }
+          return a;
+       
+    }
+   
+
+
+}
+void display()
+{   
+    if(front==-1&&rear==-1)
+    {
+        printf("empty queue\n");
+    }
+    for(int i=front;i<=rear;i++)
+    {
+        printf("%d\t",q[i]);
+    }
+}
